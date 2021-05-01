@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>one sentence game</title>
+</head>
+<body>
+    <div class="flex-container-column">
+        <h1>one sentence game</h1>
+        <div id="previous-input">
+            <h2 id="story-heading">The story heading</h2>
+            <p id="previous">The previous sentence</p>
+        </div>
+        <div id="user-input">
+            <input type="text" id="sentence-input" placeholder="continue or finish the story">
+            <button id="add-button">add to story</button>
+            <button id="end-button">end story</button>
+        </div>
+        <div id="info" hidden>
+            <p id="thanks">Thanks for your contribution!</p>
+            <p id="info-p">If you want to be informed when the story is finished, 
+                fill in your email below</p>
+        </div>
+        <form id="email-form" hidden>
+            <input type="email" placeholder="enter e-mail to get notification if story is published">
+            <button type="submit">send</button> 
+        </form>
+    </div>
+</body>
+</html>

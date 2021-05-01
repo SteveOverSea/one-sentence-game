@@ -1,0 +1,38 @@
+$san-serif-font: "Helvetica", Arial, sans-serif;
+$serif-font: 'Times New Roman', Times, serif;
+
+html {
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
+}
+
+h1, #story-heading {
+    font-family: $san-serif-font;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+#previous {
+    font-size: 1.5rem;
+}
+
+#sentence-input {
+    height: 1.5rem;
+    width: clamp(400px, 60vw, 800px);
+    padding: 0.5rem;
+    text-align: center;
+    border-radius: 1.5rem;
+    font: 1.5rem $serif-font;
+}
+
+.flex-container-column {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    justify-content: space-evenly;
+    align-items: center;
+}
