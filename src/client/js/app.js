@@ -1,36 +1,51 @@
-import * as server from "./simulateDB.js";
+import * as db from "./simulateDB";
 
 document.addEventListener("DOMContentLoaded", prepareInput)
 
 export function prepareInput() {
 
+    // reset DOM
     document.getElementById("previous-input").hidden = false;
     document.getElementById("user-input").hidden = false;
     document.getElementById("info").hidden = true;
     document.getElementById("email-form").hidden = true;
 
-    let data = server.getServerData();
+    //get an unfinished story or create a new one
+    let storyData = db.getStory();
+    if(!storyData) {
+        storyData = userPromptNewStory();
+    }
 
-    updateDOM(data);
+    updateDOM(storyData);
 
+    // TODO: bring story element to the event listener
     document.getElementById("add-button").addEventListener("click", addSentence);
     document.getElementById("end-button").addEventListener("click", finishStory);
 
 }
 
+function userPromptNewStory() {
+    // ask user for title and enter new story
+    // example input:
+    return {
+        title: "the blue grass"
+    }
+}
+
 function updateDOM(data) {
     document.getElementById("story-heading").textContent = data.title;
-    document.getElementById("previous").textContent = "... " + data.lastSentence;
+    if(data.lastSentence)
+        document.getElementById("previous").textContent = "... " + data.lastSentence;
 }
 
 function addSentence(e) {
     const newSentence = getInputAndPrepareEmailInput();
-    server.sendNewSentence(newSentence, false);
+    db.sendNewSentence(newSentence, false);
 }
 
 function finishStory(e) {
     const newSentence = getInputAndPrepareEmailInput();
-    server.sendNewSentence(newSentence, true);
+    db.sendNewSentence(newSentence, true);
 }
 
 function getInputAndPrepareEmailInput() {

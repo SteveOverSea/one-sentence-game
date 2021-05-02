@@ -1,4 +1,4 @@
 import "./styles/base.scss"
-import "./js/app.js"
-import "./js/simulateDB.js"
+import "./js/app"
+import "./js/simulateDB"
 
