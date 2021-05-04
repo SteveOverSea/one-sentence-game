@@ -1,4 +1,4 @@
-import * as db from "./dataApi";
+import * as db from "./dataRequest";
 
 document.addEventListener("DOMContentLoaded", prepareInput)
 
@@ -11,26 +11,44 @@ export async function prepareInput() {
     document.getElementById("email-form").hidden = true;
 
     //get an unfinished story or create a new one
-    let storyData = await db.getUnfinishedStory();
-    if(!storyData) {
-        storyData = userPromptNewStory();
+    let storyData = await db.getReadyStory();
+    if(storyData) {
+        prepareDOM(storyData)
+    } else {
+        userPromptNewStory();
     }
+}
 
+function prepareDOM(storyData) {
     updateDOM(storyData);
 
-    // TODO: bring story element to the event listener
-    // bring DB to server!
+    document.getElementById("sentence-input").focus();
+
+
     document.getElementById("add-button").addEventListener("click", addSentence);
     document.getElementById("end-button").addEventListener("click", finishStory);
-
+    //document.getElementById("popular").addEventListener("click", getPopular);
+    //document.getElementById("random").addEventListener("click", getRandom);
 }
 
 function userPromptNewStory() {
     // ask user for title and enter new story
-    // example input:
-    return {
-        title: "the blue grass"
-    }
+    document.getElementById("previous-input").hidden = true;
+    document.getElementById("user-input").hidden = true;
+    const userPrompt = document.getElementById("user-prompt");
+    userPrompt.hidden = false;
+
+    document.getElementById("title-input").focus();
+
+
+    userPrompt.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const title = document.getElementById("title-input").value;
+        document.getElementById("previous-input").hidden = false;
+        document.getElementById("user-input").hidden = false;
+        userPrompt.hidden = true;
+        prepareDOM(await db.add({ title }));
+    });
 }
 
 function updateDOM(data) {

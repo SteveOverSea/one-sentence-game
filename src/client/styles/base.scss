@@ -1,6 +1,10 @@
 $san-serif-font: "Helvetica", Arial, sans-serif;
 $serif-font: 'Times New Roman', Times, serif;
 
+*:focus {
+    outline: none;
+}
+
 html {
     margin: 0;
     padding: 0;
@@ -19,12 +23,13 @@ h1 {
     font-size: 1.5rem;
 }
 
-#sentence-input {
+#sentence-input, #title-input {
     height: 1.5rem;
     width: clamp(400px, 60vw, 800px);
     padding: 0.5rem;
     text-align: center;
     border-radius: 1.5rem;
+    border: 1px solid #000;
     font: 1.5rem $serif-font;
 }
 
@@ -35,4 +40,41 @@ h1 {
     height: 100vh;
     justify-content: space-evenly;
     align-items: center;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: clamp(100px, 20%, 300px);
+    a {
+        font-size: 0.8rem;
+        font-family: $san-serif-font;
+        color: #000;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: line-through;
+        }
+    }
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 1rem;
+
+    button {
+        height: 1.25rem;
+        border-radius: 1.25rem;
+        border: 1px solid #000;
+        background: transparent;
+        cursor: pointer;
+
+        &:hover {
+            color: #FFF;
+            background: #000;
+        }
+    }
 }
