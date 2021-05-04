@@ -1,8 +1,8 @@
-import * as db from "./simulateDB";
+import * as db from "./dataApi";
 
 document.addEventListener("DOMContentLoaded", prepareInput)
 
-export function prepareInput() {
+export async function prepareInput() {
 
     // reset DOM
     document.getElementById("previous-input").hidden = false;
@@ -11,7 +11,7 @@ export function prepareInput() {
     document.getElementById("email-form").hidden = true;
 
     //get an unfinished story or create a new one
-    let storyData = db.getStory();
+    let storyData = await db.getUnfinishedStory();
     if(!storyData) {
         storyData = userPromptNewStory();
     }
@@ -19,6 +19,7 @@ export function prepareInput() {
     updateDOM(storyData);
 
     // TODO: bring story element to the event listener
+    // bring DB to server!
     document.getElementById("add-button").addEventListener("click", addSentence);
     document.getElementById("end-button").addEventListener("click", finishStory);
 
@@ -34,23 +35,28 @@ function userPromptNewStory() {
 
 function updateDOM(data) {
     document.getElementById("story-heading").textContent = data.title;
+
     if(data.lastSentence)
         document.getElementById("previous").textContent = "... " + data.lastSentence;
+
+    // save story id to element (safe?) - needed for eventhandlers
+    document.getElementById("sentence-input").dataset.storyId = data.id;
 }
 
 function addSentence(e) {
-    const newSentence = getInputAndPrepareEmailInput();
-    db.sendNewSentence(newSentence, false);
+    const newSentenceData = getInputAndPrepareEmailInput();
+    db.addSentence(newSentenceData.id, newSentenceData.text, false);
 }
 
 function finishStory(e) {
-    const newSentence = getInputAndPrepareEmailInput();
-    db.sendNewSentence(newSentence, true);
+    const newSentenceData = getInputAndPrepareEmailInput();
+    db.addSentence(newSentenceData.id, newSentenceData.text, true);
 }
 
 function getInputAndPrepareEmailInput() {
     const sentenceInput = document.getElementById("sentence-input");
-    const newSentence = sentenceInput.value;
+    const text = sentenceInput.value;
+    const id = sentenceInput.dataset.storyId;
     sentenceInput.value = "";
     // check if there is a dot or add one at the end.
     // hide input and show email data and thanks for input! or contribute to another story
@@ -66,7 +72,7 @@ function getInputAndPrepareEmailInput() {
 
     emailForm.addEventListener("submit", saveEmail);
 
-    return newSentence;
+    return { id, text };
 }
 
 function toggleHidden (el) {
