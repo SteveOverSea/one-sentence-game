@@ -11,6 +11,8 @@ async function getOne(id) {
 }
 
 export async function add(story) {
+    console.log("add");
+    console.log(story);
     try {
         const response = await fetch("stories", {
             headers: {

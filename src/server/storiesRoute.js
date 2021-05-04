@@ -1,25 +1,35 @@
 const express = require("express");
 const stories = express.Router();
 const data = require("./data");
+const { readData, writeData } = require("./fileHandler");
 
-stories.get("/", (req, res) => {
-    res.send(data);
+stories.get("/", async (req, res) => {
+    res.send(await readData());
 });
 
-stories.get("/:id", (req, res) => {
+stories.get("/:id", async (req, res) => {
+    const data = await readData();
     res.send(data.find(el => el.id == req.params.id));
 });
 
 // maybe too specific
-stories.patch("/:id", (req, res) => {
-    const story = data.find(story => story.id == req.params.id);
-    story.sentences.push(req.body.sentence);
-    story.lastSentence = req.body.sentence;
-    story.isEnd = req.body.isEnd;
+stories.patch("/:id", async (req, res) => {
+    const data = await readData();
+    for(let i = 0; i < data.length; i++) {
+        if(data[i].id == req.params.id) {
+            data[i].sentences.push(req.body.sentence);
+            data[i].lastSentence = req.body.sentence;
+            data[i].isEnd = req.body.isEnd;
+        }
+    }
+    
+    await writeData(data);
+    
     res.status(201).send();
 })
 
-stories.post("/", (req, res) => {
+stories.post("/", async (req, res) => {
+    const data = await readData();
     const story = req.body;
     if(!story.id) {
         story.id = data.length + 1;
@@ -42,9 +52,10 @@ stories.post("/", (req, res) => {
     if(!story.score) {
         story.score = 0;
     }
-
     data.push(story);
+    await writeData(data);
     res.send(story);
+    console.log(story);
 });
 
 module.exports = stories;

@@ -35,20 +35,26 @@ function userPromptNewStory() {
     // ask user for title and enter new story
     document.getElementById("previous-input").hidden = true;
     document.getElementById("user-input").hidden = true;
+    document.getElementById("title-input").value = "";
     const userPrompt = document.getElementById("user-prompt");
     userPrompt.hidden = false;
 
     document.getElementById("title-input").focus();
 
 
-    userPrompt.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const title = document.getElementById("title-input").value;
-        document.getElementById("previous-input").hidden = false;
-        document.getElementById("user-input").hidden = false;
-        userPrompt.hidden = true;
-        prepareDOM(await db.add({ title }));
-    });
+    userPrompt.addEventListener("submit", submitHandler);
+}
+
+async function submitHandler(e) {
+    e.preventDefault();
+    const title = document.getElementById("title-input").value;
+    document.getElementById("previous-input").hidden = false;
+    document.getElementById("user-input").hidden = false;
+    document.getElementById("user-prompt").hidden = true;
+    console.log("submit-titleform");
+    prepareDOM(await db.add({ title }));
+    document.getElementById("user-prompt").removeEventListener("submit",submitHandler);
+
 }
 
 function updateDOM(data) {
@@ -56,6 +62,8 @@ function updateDOM(data) {
 
     if(data.lastSentence)
         document.getElementById("previous").textContent = "... " + data.lastSentence;
+    else
+        document.getElementById("previous").textContent = "";
 
     // save story id to element (safe?) - needed for eventhandlers
     document.getElementById("sentence-input").dataset.storyId = data.id;
