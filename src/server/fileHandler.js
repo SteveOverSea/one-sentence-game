@@ -8,6 +8,9 @@ async function readData() {
         return JSON.parse(data);
     } catch (error) {
         console.error(error);
+        //no file there
+        if(error.errno == -2)
+            return [];
     }
   }
 
