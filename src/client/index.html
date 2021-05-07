@@ -27,20 +27,20 @@
             <div id="user-input">
                 <textarea id="sentence-input" placeholder="continue or finish the story" spellcheck="false"></textarea>
             </div>
-            <div class="buttons">
+            <div id="buttons" class="buttons">
                 <button id="add-button">add to story</button>
                 <button id="end-button">end story</button>
             </div>
-            <div id="info" hidden>
+            <div id="info" class="hidden">
                 <p id="thanks">Thanks for your contribution!</p>
                 <p id="info-p">If you want to be informed when the story is finished, 
                     fill in your email below</p>
                 <button id="restart">new sentence/story?</button>
             </div>
-            <form id="email-form" hidden>
-                <input type="email" placeholder="enter e-mail to get notification if story is published">
-                <button type="submit">send</button> 
+            <form id="email-form" class="hidden">
+                <input id="email-input" type="email" placeholder="get notification when story finishes">
             </form>
+            <p id="email-response" class="hidden"></p>
             <footer id="footer">
                 footer
             </footer>

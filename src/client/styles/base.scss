@@ -12,6 +12,8 @@ $serif-font: 'Times New Roman', Times, serif;
     outline: none;
 }
 
+
+
 html, body {
     margin-top: 0;
     padding: 0;
@@ -56,8 +58,10 @@ h1 {
     #previous {
         font-size: 1.5rem;
         hyphens: auto;
+        text-align: justify;
         -moz-hyphens: auto;
         -webkit-hyphens: auto;
+        font-style: italic;
     }
 }
 
@@ -151,5 +155,60 @@ h1 {
             color: #FFF;
             background: #000;
         }
+    }
+}
+
+#restart{
+    display: block;
+    height: 2rem;
+    width: fit-content;
+    margin: 1rem auto;
+    padding: 0.5rem;
+    border-radius: 2rem;
+    border: 1px solid #000;
+    background: transparent;
+    cursor: pointer;
+
+    &:hover {
+        color: #FFF;
+        background: #000;
+    }
+}     
+
+.hidden {
+    display: none;
+}
+
+#info {
+    width: clamp(400px, 50vw, 800px);
+    font-size: 1.5rem;
+}
+
+#email-form {
+    input {
+        height: 1.5rem;
+        width: clamp(400px, 50vw, 800px);
+        padding: 0.5rem;
+        text-align: center;
+        font: 1.5rem $serif-font;
+        border: 1px solid #000;
+        border-radius: 1.5rem;
+    }
+
+    button {
+        display: block;
+        height: 2rem;
+        width: fit-content;
+        margin: 1rem auto;
+        padding: 0 1rem 0 1rem;
+        border-radius: 2rem;
+        border: 1px solid #000;
+        background: transparent;
+        cursor: pointer;
+
+    &:hover {
+        color: #FFF;
+        background: #000;
+    }
     }
 }

@@ -28,6 +28,23 @@ export async function add(story) {
     }
 }
 
+export async function saveEmailToStory(id, email) {
+    try {
+        await fetch("stories/saveEmail/" + id, {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'PATCH',                                                              
+            body: JSON.stringify({ email })
+        });
+
+        return true;
+    } catch (error) {
+        console.log(error);
+        return false;
+    }
+}
+
 export async function getReadyStory() {
     const allStories = await getAll();
     return allStories.find(story => story.isEnd == false && story.isLocked == false);

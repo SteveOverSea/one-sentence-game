@@ -5,10 +5,12 @@ document.addEventListener("DOMContentLoaded", prepareInput)
 export async function prepareInput() {
 
     // reset DOM
-    document.getElementById("previous-input").hidden = false;
-    document.getElementById("user-input").hidden = false;
-    document.getElementById("info").hidden = true;
-    document.getElementById("email-form").hidden = true;
+    document.getElementById("previous-input").classList.remove("hidden");
+    document.getElementById("user-input").classList.remove("hidden");
+    document.getElementById("buttons").classList.remove("hidden");
+    document.getElementById("info").classList.add("hidden");
+    document.getElementById("email-form").classList.add("hidden");
+    document.getElementById("email-response").classList.add("hidden");
 
     //get an unfinished story or create a new one
     let storyData = await db.getReadyStory();
@@ -40,11 +42,11 @@ function prepareDOM(storyData) {
 
 function userPromptNewStory() {
     // ask user for title and enter new story
-    document.getElementById("previous-input").hidden = true;
-    document.getElementById("user-input").hidden = true;
+    hideMainContent();
+
     document.getElementById("title-input").value = "";
     const userPrompt = document.getElementById("user-prompt");
-    userPrompt.hidden = false;
+    toggleHidden(userPrompt);
 
     document.getElementById("title-input").focus();
 
@@ -55,10 +57,10 @@ function userPromptNewStory() {
 async function submitHandler(e) {
     e.preventDefault();
     const title = document.getElementById("title-input").value;
-    document.getElementById("previous-input").hidden = false;
-    document.getElementById("user-input").hidden = false;
-    document.getElementById("user-prompt").hidden = true;
-    console.log("submit-titleform");
+    toggleHidden(document.getElementById("previous-input"));
+    toggleHidden(document.getElementById("user-input"));
+    toggleHidden(document.getElementById("user-prompt"))
+
     prepareDOM(await db.add({ title }));
     document.getElementById("user-prompt").removeEventListener("submit",submitHandler);
 
@@ -68,7 +70,7 @@ function updateDOM(data) {
     document.getElementById("story-heading").textContent = data.title;
 
     if(data.lastSentence)
-        document.getElementById("previous").textContent = "... " + data.lastSentence;
+        document.getElementById("previous").textContent = data.lastSentence;
     else
         document.getElementById("previous").textContent = "";
 
@@ -93,13 +95,10 @@ function getInputAndPrepareEmailInput() {
     sentenceInput.value = "";
     // check if there is a dot or add one at the end.
     // hide input and show email data and thanks for input! or contribute to another story
-    const previousInput = document.getElementById("previous-input");
-    const userInput = document.getElementById("user-input");
     const emailForm = document.getElementById("email-form");
     const infoDiv = document.getElementById("info");
    
-    toggleHidden(previousInput);
-    toggleHidden(userInput);
+    hideMainContent();
     toggleHidden(emailForm);
     toggleHidden(infoDiv);
 
@@ -109,9 +108,29 @@ function getInputAndPrepareEmailInput() {
 }
 
 function toggleHidden (el) {
-    el.hidden = !el.hidden;
+    el.classList.toggle("hidden");
 }
 
-function saveEmail(e) {
+async function saveEmail(e) {
     e.preventDefault();
+    const id = document.getElementById("sentence-input").dataset.storyId;
+    const email = document.getElementById("email-input").value;
+    const success = await db.saveEmailToStory(id, email);
+
+    e.target.classList.add("hidden");
+    const emailResponse = document.getElementById("email-response");
+
+    if(success) {
+        emailResponse.textContent = "Thank you.";
+    } else {
+        emailResponse.textContent = "Something bad happend.";
+    }
+    
+    toggleHidden(emailResponse);
+}
+
+function hideMainContent() {
+    document.getElementById("user-input").classList.toggle("hidden");
+    document.getElementById("buttons").classList.toggle("hidden");
+    document.getElementById("previous-input").classList.toggle("hidden");
 }

@@ -26,7 +26,20 @@ stories.patch("/:id", async (req, res) => {
     await writeData(data);
     
     res.status(201).send();
-})
+});
+
+stories.patch("/saveEmail/:id", async (req, res) => {
+    const data = await readData();
+    for(let i = 0; i < data.length; i++) {
+        if(data[i].id == req.params.id) {
+            data[i].contributors.push(req.body.email);
+        }
+    }
+    
+    await writeData(data);
+    
+    res.status(201).send();
+});
 
 stories.post("/", async (req, res) => {
     const data = await readData();
