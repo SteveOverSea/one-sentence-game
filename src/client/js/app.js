@@ -59,7 +59,9 @@ async function submitHandler(e) {
     const title = document.getElementById("title-input").value;
     toggleHidden(document.getElementById("previous-input"));
     toggleHidden(document.getElementById("user-input"));
-    toggleHidden(document.getElementById("user-prompt"))
+    toggleHidden(document.getElementById("user-prompt"));
+    toggleHidden(document.getElementById("buttons"));
+
 
     prepareDOM(await db.add({ title }));
     document.getElementById("user-prompt").removeEventListener("submit",submitHandler);

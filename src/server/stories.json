@@ -1,72 +1,13 @@
 [
   {
-    "title": "Kristina, die Rampensau",
+    "title": "Margherita im Almtal",
     "id": 1,
     "sentences": [
-      "Sie ging auf die Bühne und sang ihr Lied."
+      "Jetzt gab es keinen Weg mehr zurück."
     ],
-    "lastSentence": "Sie ging auf die Bühne und sang ihr Lied.",
-    "contributors": [],
-    "isEnd": true,
-    "isLocked": false,
-    "score": 0
-  },
-  {
-    "title": "Test",
-    "id": 2,
-    "sentences": [
-      "Das ist nicht das, was ich mir gewünscht hätte und auch trotzdem soll es weitergehen",
-      "Nur der Dieter wollte nicht aufgeben warum all das so getan wurde. Naja so soll es eben weitergehen.",
-      "aus die maus"
-    ],
-    "lastSentence": "aus die maus",
-    "contributors": [],
-    "isEnd": true,
-    "isLocked": false,
-    "score": 0
-  },
-  {
-    "title": "Der dicke Dieter",
-    "id": 3,
-    "sentences": [
-      "Es war der Mann mit dem grauen Haar",
-      "Und dann ging er in die Mitte des Bildes und fragte »Ey Junge du stinkst nach Kacke«.",
-      "Dann ging er in die andere Richtung und machte kehrt.",
-      "Das wollte er aber nicht.",
-      "Und er ging heim.",
-      "please hide.",
-      "and again.",
-      "Not bad really.",
-      "How about now?",
-      "Now",
-      "and now?",
-      "jetzt.",
-      "und dann",
-      "jaja",
-      "Nana",
-      "hey",
-      "Hallo ich bins der Pumuckl",
-      "schon wieder der Pumuckl",
-      "nochmal ich",
-      "wieder",
-      "j",
-      "was ist los",
-      "hey",
-      "jetzt aber",
-      "wie schuts jetzt aus",
-      "ha",
-      "jo",
-      "ha",
-      "hex du"
-    ],
-    "lastSentence": "hex du",
+    "lastSentence": "Jetzt gab es keinen Weg mehr zurück.",
     "contributors": [
-      "bitte@danke",
-      "einmal@nochmal",
-      "tschi@jo",
-      "asd@asd",
-      "asd@asd",
-      "jaja@nana"
+      "torsten.guenther@hotmail.de"
     ],
     "isEnd": false,
     "isLocked": false,

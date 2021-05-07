@@ -1,18 +1,24 @@
 import { prepareInput } from "./app"
 
 async function getAll() {
-    const allStories = await ( await fetch("/stories") ).json();
-    return allStories;
+    try {
+        const allStories = await ( await fetch("/stories") ).json();
+        return allStories;
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 async function getOne(id) {
-    const story = await ( await fetch("/stories/" + id) ).json();
-    return story;
+    try {
+        const story = await ( await fetch("/stories/" + id) ).json();
+        return story;
+    } catch (error) {
+        console.log(error)
+    };
 }
 
 export async function add(story) {
-    console.log("add");
-    console.log(story);
     try {
         const response = await fetch("stories", {
             headers: {
@@ -46,8 +52,13 @@ export async function saveEmailToStory(id, email) {
 }
 
 export async function getReadyStory() {
-    const allStories = await getAll();
-    return allStories.find(story => story.isEnd == false && story.isLocked == false);
+    try {
+        const allStories = await getAll();
+        return allStories.find(story => story.isEnd == false && story.isLocked == false);
+
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 export async function addSentence(id, sentence, isEnd) {

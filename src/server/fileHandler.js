@@ -2,15 +2,14 @@ const fs = require("fs").promises;
 
 const filePath = "./src/server/stories.json";
 
+// big errors if there is no file
+
 async function readData() {
     try {
         const data = await fs.readFile(filePath);
         return JSON.parse(data);
     } catch (error) {
         console.error(error);
-        //no file there
-        if(error.errno == -2)
-            return [];
     }
   }
 
