@@ -16,9 +16,22 @@
     "id": 2,
     "sentences": [
       "Das ist nicht das, was ich mir gewünscht hätte und auch trotzdem soll es weitergehen",
-      "Nur der Dieter wollte nicht aufgeben warum all das so getan wurde. Naja so soll es eben weitergehen."
+      "Nur der Dieter wollte nicht aufgeben warum all das so getan wurde. Naja so soll es eben weitergehen.",
+      "aus die maus"
     ],
-    "lastSentence": "Nur der Dieter wollte nicht aufgeben warum all das so getan wurde. Naja so soll es eben weitergehen.",
+    "lastSentence": "aus die maus",
+    "contributors": [],
+    "isEnd": true,
+    "isLocked": false,
+    "score": 0
+  },
+  {
+    "title": "Der dicke Dieter",
+    "id": 3,
+    "sentences": [
+      "Es war der Mann mit dem grauen Haar"
+    ],
+    "lastSentence": "Es war der Mann mit dem grauen Haar",
     "contributors": [],
     "isEnd": false,
     "isLocked": false,

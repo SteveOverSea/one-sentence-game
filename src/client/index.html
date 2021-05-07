@@ -8,7 +8,13 @@
 </head>
 <body>
     <div id="page-container">
-        <h1>one sentence game</h1>
+        <header id="header">
+            <h1>one sentence game</h1>
+            <div class="footer-links">
+                <a href="" id="popular">popular stories</a>
+                <a href="" id="random">random story</a>
+            </div>
+        </header>
         <div id="flex-container-column">
             <div id="previous-input">
                 <h2 id="story-heading"></h2>
@@ -19,11 +25,11 @@
             </form>
             
             <div id="user-input">
-                <textarea id="sentence-input" placeholder="continue or finish the story"></textarea>
-                <div class="buttons">
-                    <button id="add-button">add to story</button>
-                    <button id="end-button">end story</button>
-                </div>
+                <textarea id="sentence-input" placeholder="continue or finish the story" spellcheck="false"></textarea>
+            </div>
+            <div class="buttons">
+                <button id="add-button">add to story</button>
+                <button id="end-button">end story</button>
             </div>
             <div id="info" hidden>
                 <p id="thanks">Thanks for your contribution!</p>
@@ -35,10 +41,9 @@
                 <input type="email" placeholder="enter e-mail to get notification if story is published">
                 <button type="submit">send</button> 
             </form>
-            <div class="footer-links">
-                <a href="" id="popular">popular stories</a>
-                <a href="" id="random">random story</a>
-            </div>
+            <footer id="footer">
+                footer
+            </footer>
         </div>
     </div>
 </body>

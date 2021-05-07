@@ -1,19 +1,36 @@
 $san-serif-font: "Helvetica", Arial, sans-serif;
 $serif-font: 'Times New Roman', Times, serif;
 
+* {
+    margin-block-start: auto;
+    margin-block-end: auto;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+}
+
 *:focus {
     outline: none;
 }
 
-html {
-    margin: 0;
+html, body {
+    margin-top: 0;
     padding: 0;
     font-size: 1em;
+    height: 100vh;
+    width: 100vw;
 }
 
 #page-container {
     width: 100vw;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#header {
+    flex: 1 1 auto;
+    width: fit-content;
+    margin: 5rem auto 3rem auto;
 }
 
 h1, #story-heading {
@@ -23,13 +40,17 @@ h1, #story-heading {
 h1 {
     font-size: 3rem;
     text-align: center;
+    width: fit-content;
 }
 
 #previous-input {
     width: clamp(400px, 50vw, 800px);
+    align-self: flex-start;
+    flex: 5 5 auto;
 
     #story-heading {
         text-align: center;
+        margin-bottom: 1.5rem;
     }
 
     #previous {
@@ -40,6 +61,11 @@ h1 {
     }
 }
 
+#footer {
+    flex: 0 0 auto;
+    margin: 0.5rem;
+}
+
 
 
 #sentence-input, #title-input {
@@ -47,9 +73,22 @@ h1 {
     width: clamp(400px, 60vw, 800px);
     padding: 0.5rem;
     text-align: center;
-    border-radius: 1.5rem;
-    border: 1px solid #000;
     font: 1.5rem $serif-font;
+}
+
+#user-input {
+    flex: 4 4 auto;
+
+    #sentence-input {
+        height: auto;
+        padding: 0; // has to be because of resizing...
+        resize: none;
+        overflow: hidden;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
 }
 
 #title-input, #sentence-input {
@@ -61,11 +100,11 @@ h1 {
 }
 
 #flex-container-column {
+    flex: 1 1 100%;
     display: flex;
     flex-direction: column;
     width: 100vw;
-    height: 80vh;
-    justify-content: space-evenly;
+    height: auto;
     align-items: center;
 }
 
@@ -73,12 +112,15 @@ h1 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: clamp(100px, 20%, 300px);
+    width: 100%;
     a {
+        display: block;
         font-size: 0.8rem;
         font-family: $san-serif-font;
         color: #000;
         text-decoration: none;
+        width: fit-content;
+        margin: 0.5rem 0;
 
         &:hover {
             text-decoration: line-through;
@@ -87,14 +129,20 @@ h1 {
 }
 
 .buttons {
+    flex: 3 3 auto;
     display: flex;
     flex-direction: row;
     justify-content: center;
     margin-top: 1rem;
+    width: 100%;
 
     button {
-        height: 1.25rem;
-        border-radius: 1.25rem;
+        display: block;
+        height: 2rem;
+        width: fit-content;
+        margin: 0 1rem;
+        padding: 0.5rem;
+        border-radius: 2rem;
         border: 1px solid #000;
         background: transparent;
         cursor: pointer;
