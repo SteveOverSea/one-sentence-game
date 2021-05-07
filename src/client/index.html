@@ -7,35 +7,38 @@
     <title>one sentence game</title>
 </head>
 <body>
-    <div class="flex-container-column">
+    <div id="page-container">
         <h1>one sentence game</h1>
-        <div id="previous-input">
-            <h2 id="story-heading"></h2>
-            <p id="previous"></p>
-        </div>
-        <form id="user-prompt" hidden>
-            <input id="title-input" type="text" placeholder="add the title of your story">
-        </form>
-        <div id="user-input">
-            <input type="text" id="sentence-input" placeholder="continue or finish the story">
-            <div class="buttons">
-                <button id="add-button">add to story</button>
-                <button id="end-button">end story</button>
+        <div id="flex-container-column">
+            <div id="previous-input">
+                <h2 id="story-heading"></h2>
+                <p id="previous"></p>
             </div>
-        </div>
-        <div id="info" hidden>
-            <p id="thanks">Thanks for your contribution!</p>
-            <p id="info-p">If you want to be informed when the story is finished, 
-                fill in your email below</p>
-            <button id="restart">new sentence/story?</button>
-        </div>
-        <form id="email-form" hidden>
-            <input type="email" placeholder="enter e-mail to get notification if story is published">
-            <button type="submit">send</button> 
-        </form>
-        <div class="footer-links">
-            <a href="" id="popular">popular stories</a>
-            <a href="" id="random">random story</a>
+            <form id="user-prompt" hidden>
+                <input id="title-input" type="text" placeholder="add the title of your story">
+            </form>
+            
+            <div id="user-input">
+                <textarea id="sentence-input" placeholder="continue or finish the story"></textarea>
+                <div class="buttons">
+                    <button id="add-button">add to story</button>
+                    <button id="end-button">end story</button>
+                </div>
+            </div>
+            <div id="info" hidden>
+                <p id="thanks">Thanks for your contribution!</p>
+                <p id="info-p">If you want to be informed when the story is finished, 
+                    fill in your email below</p>
+                <button id="restart">new sentence/story?</button>
+            </div>
+            <form id="email-form" hidden>
+                <input type="email" placeholder="enter e-mail to get notification if story is published">
+                <button type="submit">send</button> 
+            </form>
+            <div class="footer-links">
+                <a href="" id="popular">popular stories</a>
+                <a href="" id="random">random story</a>
+            </div>
         </div>
     </div>
 </body>

@@ -7,6 +7,19 @@
     ],
     "lastSentence": "Sie ging auf die Bühne und sang ihr Lied.",
     "contributors": [],
+    "isEnd": true,
+    "isLocked": false,
+    "score": 0
+  },
+  {
+    "title": "Test",
+    "id": 2,
+    "sentences": [
+      "Das ist nicht das, was ich mir gewünscht hätte und auch trotzdem soll es weitergehen",
+      "Nur der Dieter wollte nicht aufgeben warum all das so getan wurde. Naja so soll es eben weitergehen."
+    ],
+    "lastSentence": "Nur der Dieter wollte nicht aufgeben warum all das so getan wurde. Naja so soll es eben weitergehen.",
+    "contributors": [],
     "isEnd": false,
     "isLocked": false,
     "score": 0

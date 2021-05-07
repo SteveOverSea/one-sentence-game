@@ -11,17 +11,36 @@ html {
     font-size: 1em;
 }
 
+#page-container {
+    width: 100vw;
+    height: 100vh;
+}
+
 h1, #story-heading {
     font-family: $san-serif-font;
 }
 
 h1 {
     font-size: 3rem;
+    text-align: center;
 }
 
-#previous {
-    font-size: 1.5rem;
+#previous-input {
+    width: clamp(400px, 50vw, 800px);
+
+    #story-heading {
+        text-align: center;
+    }
+
+    #previous {
+        font-size: 1.5rem;
+        hyphens: auto;
+        -moz-hyphens: auto;
+        -webkit-hyphens: auto;
+    }
 }
+
+
 
 #sentence-input, #title-input {
     height: 1.5rem;
@@ -33,11 +52,19 @@ h1 {
     font: 1.5rem $serif-font;
 }
 
-.flex-container-column {
+#title-input, #sentence-input {
+    border: 0;
+
+    &:focus {
+        outline: 0;
+    }
+}
+
+#flex-container-column {
     display: flex;
     flex-direction: column;
     width: 100vw;
-    height: 100vh;
+    height: 80vh;
     justify-content: space-evenly;
     align-items: center;
 }

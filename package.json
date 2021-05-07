@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon ./src/server/server",
-    "build": "webpack --config webpack.config.js --watch"
+    "build": "webpack --config webpack.config.js --watch",
+    "build-start": "webpack --config webpack.config.js && node ./src/server/server"
   },
   "author": "Stefan Rausch",
   "license": "ISC",

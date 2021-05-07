@@ -22,7 +22,18 @@ export async function prepareInput() {
 function prepareDOM(storyData) {
     updateDOM(storyData);
 
-    document.getElementById("sentence-input").focus();
+    const sentenceInput = document.getElementById("sentence-input");
+
+    sentenceInput.focus();
+
+    sentenceInput.addEventListener("keydown", () => {
+        setTimeout(() => {
+            // why does this work?! 
+            //https://stackoverflow.com/questions/48212286/make-textarea-with-setted-height-grow-when-new-line-is-added
+            sentenceInput.style.height = `auto`;
+            sentenceInput.style.height = `${sentenceInput.scrollHeight}px`;
+        }, 0);
+    });
 
 
     document.getElementById("add-button").addEventListener("click", addSentence);
