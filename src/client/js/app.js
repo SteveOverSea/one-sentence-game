@@ -62,8 +62,15 @@ async function submitHandler(e) {
     toggleHidden(document.getElementById("user-prompt"));
     toggleHidden(document.getElementById("buttons"));
 
-
-    prepareDOM(await db.add({ title }));
+    const story =  {
+        title,
+        sentences: [],
+        lastSentence: "",
+        is_end: false,
+        is_locked: false,
+        score: 0 
+    }
+    prepareDOM(await db.add(story));
     document.getElementById("user-prompt").removeEventListener("submit",submitHandler);
 
 }
@@ -71,8 +78,9 @@ async function submitHandler(e) {
 function updateDOM(data) {
     document.getElementById("story-heading").textContent = data.title;
 
-    if(data.lastSentence)
-        document.getElementById("previous").textContent = data.lastSentence;
+    console.log(data.last_sentence);
+    if(data.last_sentence && data.last_sentence.length > 0)
+        document.getElementById("previous").textContent = data.last_sentence;
     else
         document.getElementById("previous").textContent = "";
 

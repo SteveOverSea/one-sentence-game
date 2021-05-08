@@ -2,30 +2,26 @@ const express = require("express");
 const stories = express.Router();
 const data = require("./data");
 const { readData, writeData } = require("./fileHandler");
+const StoryData = require("./models/story");
+
+const storyData = new StoryData();
 
 stories.get("/", async (req, res) => {
-    res.send(await readData());
+    //res.send(await readData());
+    const story = await storyData.index();
+    res.send(story);
 });
 
 stories.get("/:id", async (req, res) => {
-    const data = await readData();
-    res.send(data.find(el => el.id == req.params.id));
+    const story = await storyData.show(req.params.id);
+    res.send(story);
+    // const data = await readData();
+    // res.send(data.find(el => el.id == req.params.id));
 });
 
-// maybe too specific
 stories.patch("/:id", async (req, res) => {
-    const data = await readData();
-    for(let i = 0; i < data.length; i++) {
-        if(data[i].id == req.params.id) {
-            data[i].sentences.push(req.body.sentence);
-            data[i].lastSentence = req.body.sentence;
-            data[i].isEnd = req.body.isEnd;
-        }
-    }
-    
-    await writeData(data);
-    
-    res.status(201).send();
+    const story = await storyData.edit(req.params.id, req.body);
+    res.send(story);
 });
 
 stories.patch("/saveEmail/:id", async (req, res) => {
@@ -42,33 +38,13 @@ stories.patch("/saveEmail/:id", async (req, res) => {
 });
 
 stories.post("/", async (req, res) => {
-    const data = await readData();
-    const story = req.body;
-    if(!story.id) {
-        story.id = data.length + 1;
-    }
-    if(!story.sentences) {
-        story.sentences = [];
-    }
-    if(!story.lastSentence) {
-        story.lastSentence = "";
-    }
-    if(!story.contributors) {
-        story.contributors = [];
-    }
-    if(story.isEnd === undefined) {
-        story.isEnd = false;
-    }
-    if(story.isLocked === undefined) {
-        story.isLocked = false;
-    }
-    if(!story.score) {
-        story.score = 0;
-    }
-    data.push(story);
-    await writeData(data);
-    res.send(story);
-    console.log(story);
+    const newStory = await storyData.create(req.body);
+    res.send(newStory);
+});
+
+stories.delete("/:id", async (req, res) => {
+    const story = await storyData.delete(req.params.id);
+    res.json(story);
 });
 
 module.exports = stories;

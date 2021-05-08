@@ -54,27 +54,34 @@ export async function saveEmailToStory(id, email) {
 export async function getReadyStory() {
     try {
         const allStories = await getAll();
-        return allStories.find(story => story.isEnd == false && story.isLocked == false);
-
+        const foundStory = allStories.find(story => story.is_end == false && story.is_locked == false);
+        console.log(foundStory);
+        return foundStory;
     } catch (error) {
         console.log(error);
     }
 }
 
-export async function addSentence(id, sentence, isEnd) {
+export async function addSentence(id, sentence, is_end) {
     try {
+        //get sentences
+        const story = await getOne("id");
+        const sentences = story.sentences;
+        sentences.push(sentence);
+        const last_sentence = sentence;
+
         await fetch("stories/" + id, {
             headers: {
                 'Content-Type': 'application/json'
             },
             method: 'PATCH',                                                              
-            body: JSON.stringify({ sentence, isEnd })
+            body: JSON.stringify({ sentences, last_sentence, is_end })
         });
 
-        if(isEnd) 
+        if(is_end) 
             document.getElementById("info-p").textContent = "story finished.";
 
-        document.getElementById("restart").addEventListener("click", () => prepareInput());
+        document.getElementById("restart").addEventListener("click", async () => await prepareInput());
 
     } catch (err) {
             console.log(err);
