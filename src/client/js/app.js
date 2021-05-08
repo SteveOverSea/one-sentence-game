@@ -2,8 +2,11 @@ import * as db from "./dataRequest";
 
 document.addEventListener("DOMContentLoaded", prepareInput);
 document.getElementById("restart").addEventListener("click", async () => await prepareInput());
+document.getElementById("popular").addEventListener("click", getPopular);
+    document.getElementById("random").addEventListener("click", getRandom);
 
 export async function prepareInput() {
+
 
     // reset DOM
     document.getElementById("previous-input").classList.remove("hidden");
@@ -37,8 +40,6 @@ function prepareDOM(storyData) {
 
     document.getElementById("add-button").addEventListener("click", addSentence);
     document.getElementById("end-button").addEventListener("click", finishStory);
-    //document.getElementById("popular").addEventListener("click", getPopular);
-    //document.getElementById("random").addEventListener("click", getRandom);
 }
 
 function userPromptNewStory() {
@@ -146,4 +147,16 @@ function hideMainContent() {
     document.getElementById("user-input").classList.toggle("hidden");
     document.getElementById("buttons").classList.toggle("hidden");
     document.getElementById("previous-input").classList.toggle("hidden");
+}
+
+async function getPopular(e) {
+    e.preventDefault();
+    const popStories = await (await fetch("/stories/popular")).json();
+    console.log(popStories);
+}
+
+async function getRandom(e) {
+    e.preventDefault();
+    const randStory = await (await fetch("/stories/random")).json();
+    console.log(randStory);
 }

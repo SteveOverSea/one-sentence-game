@@ -96,6 +96,17 @@ class StoryDate {
             console.log(error);
         }
     }
+
+    async customShow(query) {
+        try {
+            const conn = await Client.connect();
+            const result = await conn.query(query);
+            conn.release();
+            return result.rows;
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
 
 module.exports = StoryDate;
