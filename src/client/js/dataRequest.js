@@ -36,12 +36,16 @@ export async function add(story) {
 
 export async function saveEmailToStory(id, email) {
     try {
-        await fetch("stories/saveEmail/" + id, {
+        const story = await getOne(id);
+        const contributors = story.contributors;
+        contributors.push(email);
+
+        await fetch("stories/" + id, {
             headers: {
                 'Content-Type': 'application/json'
             },
             method: 'PATCH',                                                              
-            body: JSON.stringify({ email })
+            body: JSON.stringify({ contributors })
         });
 
         return true;

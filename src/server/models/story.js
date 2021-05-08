@@ -38,15 +38,16 @@ class StoryDate {
                 last_sentence,
                 is_end,
                 is_locked,
-                score
+                score,
+                contributors
             } = storyData;
 
-            const sql = `INSERT INTO stories (title, sentences, last_sentence, is_end, is_locked, score) VALUES($1, $2, $3, $4, $5, $6) RETURNING *`;
+            const sql = `INSERT INTO stories (title, sentences, last_sentence, is_end, is_locked, score, contributors) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *`;
 
             const conn = await Client.connect()
 
             const result = await conn
-            .query(sql, [title, sentences, last_sentence, is_end, is_locked, score]);
+            .query(sql, [title, sentences, last_sentence, is_end, is_locked, score, contributors]);
 
         const story = result.rows[0]
 

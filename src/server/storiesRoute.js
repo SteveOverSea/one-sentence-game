@@ -1,7 +1,5 @@
 const express = require("express");
 const stories = express.Router();
-const data = require("./data");
-const { readData, writeData } = require("./fileHandler");
 const StoryData = require("./models/story");
 
 const storyData = new StoryData();

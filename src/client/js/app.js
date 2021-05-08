@@ -68,6 +68,7 @@ async function submitHandler(e) {
         lastSentence: "",
         is_end: false,
         is_locked: false,
+        contributors: [],
         score: 0 
     }
     prepareDOM(await db.add(story));
@@ -137,6 +138,7 @@ async function saveEmail(e) {
     }
     
     toggleHidden(emailResponse);
+    document.getElementById("email-input").value = "";
 }
 
 function hideMainContent() {
