@@ -152,11 +152,36 @@ function hideMainContent() {
 async function getPopular(e) {
     e.preventDefault();
     const popStories = await (await fetch("/stories/popular")).json();
-    console.log(popStories);
+    showPopup(popStories);
 }
 
 async function getRandom(e) {
     e.preventDefault();
     const randStory = await (await fetch("/stories/random")).json();
-    console.log(randStory);
+    showPopup(randStory);
+}
+
+function showPopup(data) {
+    const popup = document.getElementById("popup");
+    popup.classList.remove("hidden");
+
+    const popupText = document.getElementById("popup-text");
+
+    document.getElementById("popup-close").addEventListener("click", e => {
+        e.preventDefault();
+        popup.classList.add("hidden");
+        popupText.textContent = "";
+    });
+
+    if (data.length > 1) {
+        data.forEach(story => {
+            popupText.textContent += story.title + "\n";
+        });
+
+    } else {
+        popupText.textContent = data[0].title + ": ";
+        data[0].sentences.forEach(sentence => {
+            popupText.textContent += sentence + "\n";
+        });
+    }
 }

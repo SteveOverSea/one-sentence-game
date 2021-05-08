@@ -212,3 +212,18 @@ h1 {
     }
     }
 }
+
+#popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #000;
+    background-color: #FFF;
+    height: 50vh;
+    width: 50vw;
+
+    a {
+        position: inherit;
+    }
+}
