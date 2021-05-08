@@ -1,6 +1,7 @@
 import * as db from "./dataRequest";
 
-document.addEventListener("DOMContentLoaded", prepareInput)
+document.addEventListener("DOMContentLoaded", prepareInput);
+document.getElementById("restart").addEventListener("click", async () => await prepareInput());
 
 export async function prepareInput() {
 
@@ -79,7 +80,6 @@ async function submitHandler(e) {
 function updateDOM(data) {
     document.getElementById("story-heading").textContent = data.title;
 
-    console.log(data.last_sentence);
     if(data.last_sentence && data.last_sentence.length > 0)
         document.getElementById("previous").textContent = data.last_sentence;
     else
@@ -89,14 +89,15 @@ function updateDOM(data) {
     document.getElementById("sentence-input").dataset.storyId = data.id;
 }
 
-function addSentence(e) {
+async function addSentence(e) {
     const newSentenceData = getInputAndPrepareEmailInput();
-    db.addSentence(newSentenceData.id, newSentenceData.text, false);
+    await db.addSentence(newSentenceData.id, newSentenceData.text, false);
 }
 
-function finishStory(e) {
+async function finishStory(e) {
     const newSentenceData = getInputAndPrepareEmailInput();
-    db.addSentence(newSentenceData.id, newSentenceData.text, true);
+    await db.addSentence(newSentenceData.id, newSentenceData.text, true);
+    document.getElementById("info-p").textContent = "story finished.";
 }
 
 function getInputAndPrepareEmailInput() {

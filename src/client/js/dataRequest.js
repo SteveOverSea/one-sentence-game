@@ -59,7 +59,6 @@ export async function getReadyStory() {
     try {
         const allStories = await getAll();
         const foundStory = allStories.find(story => story.is_end == false && story.is_locked == false);
-        console.log(foundStory);
         return foundStory;
     } catch (error) {
         console.log(error);
@@ -81,12 +80,6 @@ export async function addSentence(id, sentence, is_end) {
             method: 'PATCH',                                                              
             body: JSON.stringify({ sentences, last_sentence, is_end })
         });
-
-        if(is_end) 
-            document.getElementById("info-p").textContent = "story finished.";
-
-        document.getElementById("restart").addEventListener("click", async () => await prepareInput());
-
     } catch (err) {
             console.log(err);
     }
