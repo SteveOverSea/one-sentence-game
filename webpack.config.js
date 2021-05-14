@@ -6,7 +6,7 @@ module.exports = {
     mode: "production",
     entry: "./src/client/index.js",
     devServer: {
-        contentBase: path.resolve(__dirname, './src/')
+        contentBase: path.resolve(__dirname, 'dist')
     },
     module: {
         rules: [
